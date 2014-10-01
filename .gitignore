@@ -1,9 +1,6 @@
 #java specific
 *.class
 
-#netbeans ignore personal stuff
-nbproject/
-
 ## generic files to ignore
 *~
 *.lock
