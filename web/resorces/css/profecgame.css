@@ -1,0 +1,169 @@
+    
+body{
+    background: #080505;
+    background-image: url(../img/fondo.jpg);
+    font-family: verdana,arial,sans-serif;
+    color: #FFF;
+}
+
+#logoPagina {
+   width: 20%;
+}
+
+#pagina{
+    position: relative;
+    width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+    //background: #000000;
+    -webkit-border-radius: 1em 0em 1em 0em;
+    -moz-border-radius: 1em 0em 1em 0em;
+    border-radius: 1em 0em 1em 0em;
+}
+
+#cabecera img {
+    margin-left: 0%;
+}
+
+#cabecera hr{
+    clear: both;
+    display: none;
+}
+
+#cabecera #titTorneo{
+    font-size: 2em;
+    margin: 0 auto;
+    margin-left: 2em;
+    margin-top: 50px;
+    position: absolute;
+}
+
+#botonesDireccion{
+    margin-bottom: 2em;
+    width: 100%;
+    margin-right: -2em;
+}
+#botonesDireccion nav{
+    z-index: 42;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 928px;
+    padding: 1em 3em;
+    margin-left: -14px;
+    background: url(img/backgroundHeader.png);
+    position: relative;
+    border-radius: 1em 0em;
+/* border-top-right-radius: 1em 0.5em; */
+}
+
+form#formRegistro{
+    text-align: center;
+    margin-left: 20%;
+}
+
+form fieldset{
+    border: none;
+    width: 100%;
+    text-align: left;
+}
+form fieldset legend{
+    font-size: 1.5em;
+    text-align: left;
+    //margin: 10px;
+}
+
+form fieldset ul{
+    width: 70%;
+    height: 70%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+form fieldset ul li{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    clear: both;
+    
+}
+form fieldset ul li label{
+    width: 49%;
+    float: left;
+    text-align: left;
+    clear: both;
+}
+
+form fieldset ul li input{
+    width: 49%;
+    float: right;
+}
+
+form fieldset ul li select{
+    width: 49.6%;
+    float: right;
+}
+form fieldset ul li hr{
+    clear: both;
+    display: none;
+}
+
+#botonesForm{
+    text-align: center;
+    padding: 2em;
+}
+
+#botonesForm input{
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+input[type="reset"], input[type="submit"]{
+    background-color: #560202;
+    font-family: verdana,arial,sans-serif;
+    //border: none;
+    color: #FFF;
+}
+footer{
+    text-align: center;
+}
+
+/*footer img{
+    max-width: 20%;
+    margin: 1em;
+}*/
+
+footer #logoWin{
+    max-width: 9%;
+    margin: 1.1em;
+}
+
+footer #logoFifa{
+    max-width: 23%;
+    margin: 1.1em;
+}
+
+footer #logoPlay{
+    max-width: 30%;
+    margin: 1.1em;
+}
+
+footer #logoMarca{
+    max-width: 12%;
+    margin: 1.1em;
+}
+
+#logoIlum{
+    position: absolute;
+    max-width: 7%;
+    left: 100%;
+    top: 100%;
+    
+}
+
+.error { 
+    color: #a10052; 
+    //margin: 0 0 .5em 90px;
+    //display: block; 
+    //font-size: 0.5 !important; 
+}; 

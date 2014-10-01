@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Registro</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="../resorces/js/jquery-1.11.1.min.js" ></script>
+        <script type="text/javascript" src="../resorces/js/funcionesRegistroTorneo.js" ></script>
+        <script type="text/javascript" src="../resorces/js/jquery.validate.js" ></script>
+        
+        <script type="text/javascript" src="../resorces/js/alertify/lib/alertify.js"></script>
+        <link rel="stylesheet" href="../resorces/js/alertify/themes/alertify.core.css">
+        <link rel="stylesheet" href="../resorces/js/alertify/themes/alertify.default.css">
+        
+        <script type="text/javascript" src="../resorces/js/jquery-ui-1.11.1.custom/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="../resorces/js/jquery-ui-1.11.1.custom/jquery-ui.theme.min.css">
+        <link rel="stylesheet" href="../resorces/js/jquery-ui-1.11.1.custom/jquery-ui.structure.min.css">
+        
+        <link rel="stylesheet" href="../resorces/css/profecgame.css" id="cssPagina" >
+                
+    </head>
+    <body>
+        <div id="pagina">
+        	<div id="cabecera">
+                    <img id="logoPagina" alt="logo de la Pagina" src="../resorces/img/gamerLogo.png">
+                    <span id="titTorneo">Torneo Oficial PlayStation FIFA15</span>
+                    <!--<div id="botonesDireccion">
+                        <nav>
+                            <input type="button" value="boton1">
+                            <input type="button" value="boton2">
+                            <input type="button" value="boton3">
+                            <input type="button" value="boton4">
+                            <input type="button" value="boton5">
+                        </nav>
+                        
+                    </div>-->
+                    <hr>
+        	</div>
+        	<div id="contenedor">
+                    <form id="formRegistro" method="POST">
+                            <input type="hidden" id="opcion" name="opcion" value="insUsu">
+        			<fieldset>
+        				<legend></legend>
+        				<ul type="none">
+                                            <li><label>Nombre</label>
+                                                <input type="text" id="nombre" name="nombre" ><hr></li>
+                                            <li><label>Apellidos</label>
+                                                <input type="text" id="apellidos" name="apellidos" ><hr></li>
+                                            <li><label for="tipo_doc">Tipo de Documento</label>
+                                                <select id="tipo_doc" name="tipo_doc">
+                                                    <option value="0">Seleccione Tipo de Documento</option>
+                                                </select><hr></li>
+                                            <li>
+                                                <div id="informaciontutor">
+                                                    <div id="nota_legal">
+                                                        NOTA LEGAL: En caso que el participante sea menor de edad (menor de 18 años), deberá enviar carta de autorización firmada por alguno de sus padres o tutor legal para participar en el torneo, enviando un correo a contacto@profesiongamer.com adjuntando además fotocopia del documento de quien firma la misma. 
+                                                    </div>
+                                                    <!--<ul type="none">
+                                                        <li><div id="nota_legal">
+                                                                NOTA LEGAL: En caso que el participante sea menor de edad (menor de 18 años), deberá enviar carta de autorización firmada por alguno de sus padres o tutor legal para inscribirse y participar en el torneo, adjuntando además fotocopia del documento de quien firma la misma.
+                                                            </div></li>
+                                                        <li><label>Nombre</label>
+                                                            <input type="text" id="tutor_nombre" name="tutor_nombre" ></li>
+                                                        <li><label>Apellidos</label>
+                                                            <input type="text" id="tutor_apellidos" name="tutor_apellidos" ></li>
+                                                        <li><label>Tipo Documento</label>
+                                                            <select id="tutor_tipo_doc" name="tutor_tipo_doc">
+                                                                <option value="0">Seleccione Tipo de Documento</option>
+                                                            </select></li>
+                                                        <li><label>Documento Carta Aprobacion</label>
+                                                            <input type="file" id="tutor_carta" name="tutor_carta"></li>
+                                                        <li><label>Foto Documento</label>
+                                                            <input type="file" id="tutor_foto_doc" name="tutor_foto_doc" ></li>
+                                                    </ul>-->
+                                                </div>
+                                            </li>
+                                            <li><label>Número de Documento</label>
+                                                <input type="text" id="num_doc" name="num_doc" ><hr></li>
+                                            <li><label>Correo</label>
+                                                <input type="email" id="correo" name="correo" ><hr></li>
+                                            <li><label>Fecha de Nacimiento</label>
+                                                <input type="text" id="fecha_naci" name="fecha_naci" ><hr></li>
+                                            <li><label>Género</label>
+                                                <select id="genero" name="genero">
+                                                    <option value="0">Seleccione Genero</option>
+                                                    <option value="M">Masculino</option>
+                                                    <option value="F">Femenino</option>
+                                                </select><hr></li>
+                                            <li><label>Ciudad</label>
+                                                <select id="ciudad" name="ciudad">
+                                                    <option value="0">Seleccione Ciudad</option>
+                                                </select><hr></li>
+                                            <li><label>Celular</label>
+                                                <input type="tel" id="celular" name="celular" ><hr></li>
+                                            <li><label>Contraseña</label>
+                                                <input type="password" id="pass" name="pass" ><hr></li>
+                                            <li><label>Verificar Contraseña</label>
+                                                <input type="password" id="pass2" name="pass2" ><hr></li>
+                                            <li><label>Id PlayStation </label>
+                                                <input type="text" id="id_play" name="id_play" ><hr></li>
+                                            <!--<li><label>Foto de Perfil</label>
+                                                <input type="file" id="fot_perf" ></li>-->
+        				</ul>        				
+        			</fieldset>
+                            <div id="botonesForm">
+                                <input type="submit" id="enviar" value="Enviar" >
+                                <input type="reset" value="Limpiar">
+                            </div>
+        		</form>
+        	</div>
+            <footer>
+                <img id="logoWin" src="../resorces/img/win.png" alt="Logo WIN" >
+                <img id="logoFifa" src="../resorces/img/Fifalogo.png" alt="Logo FIFA 15" >
+                <img id="logoPlay" src="../resorces/img/playstationlogo.png" alt="Logo PlayStation" >
+                <img id="logoMarca" src="../resorces/img/marca colombia.png" alt="Logo Marca">
+                
+            </footer>
+            <img id="logoIlum" src="../resorces/img/Logo ILUMINATTY.png">  
+        </div>
+        <script>
+               cargarBasePag();
+        </script>
+    </body>
+</html>
