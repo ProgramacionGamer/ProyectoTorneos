@@ -19,6 +19,8 @@ public class TorneoVO {
     private int tipoTorneo;
     private String reglas;
     private String descripcion;
+    private String logo;
+    private String foto;
 
     public int getId() {
         return id;
@@ -82,5 +84,21 @@ public class TorneoVO {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }

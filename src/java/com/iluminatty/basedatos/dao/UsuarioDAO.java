@@ -6,6 +6,7 @@
 package com.iluminatty.basedatos.dao;
 
 import com.iluminatty.basedatos.vo.*;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -15,9 +16,10 @@ import java.util.ArrayList;
  * @author Fabian Castro
  */
 public class UsuarioDAO {
+
     Conexion conexion;
-    
-    public ArrayList<UsuarioVO> consultarUsuarios(){
+
+    public ArrayList<UsuarioVO> consultarUsuarios() {
         ArrayList<UsuarioVO> usuarios = new ArrayList<>();
         try {
             conexion = new Conexion();
@@ -42,8 +44,8 @@ public class UsuarioDAO {
         }
         return usuarios;
     }
-    
-    public ArrayList<UsuarioVO> consultarUsuPorCorreo(String correo){
+
+    public ArrayList<UsuarioVO> consultarUsuPorCorreo(String correo) {
         ArrayList<UsuarioVO> usuarios = new ArrayList<>();
         try {
             conexion = new Conexion();
@@ -65,14 +67,14 @@ public class UsuarioDAO {
                 usuario.setFotoPerfil(resultado.getString("foto_perfil"));
                 usuarios.add(usuario);
             }
-            
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         return usuarios;
     }
-    
-    public boolean validarUsuarioPass(String correo,String pass){
+
+    public boolean validarUsuarioPass(String correo, String pass) {
         ArrayList<UsuarioVO> usuarios = new ArrayList<>();
         try {
             conexion = new Conexion();
@@ -89,6 +91,68 @@ public class UsuarioDAO {
             return false;
         }
     }
-    
+
+    public boolean insertarUsuario(UsuarioVO usuario) {
+        try {
+            conexion = new Conexion();
+            PreparedStatement stat = conexion.getConec().prepareStatement("INSERT INTO usuarios(num_documento,tipo_documento,nombre,apellidos,num_celular,fecha_nacimiento,genero,id_ciudad,correo,password,foto_perfil) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+            stat.setString(1, usuario.getNumDocumento());
+            stat.setInt(2, usuario.getTipoDocumento());
+            stat.setString(3, usuario.getNombre());
+            stat.setString(4, usuario.getApellidos());
+            stat.setString(5, usuario.getNumeroCelular());
+            stat.setDate(6, new Date(usuario.getFechaNacimiento().getTime()));
+            stat.setString(7, usuario.getGenero());
+            stat.setInt(8, usuario.getIdCiudad());
+            stat.setString(9, usuario.getCorreo());
+            stat.setString(10, usuario.getPassword());
+            stat.setString(11, usuario.getFotoPerfil());
+            int filasAfectadas = stat.executeUpdate();
+            return filasAfectadas > 0;
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean updateUsuario(UsuarioVO usuario) {
+        try {
+            conexion = new Conexion();
+            PreparedStatement stat = conexion.getConec().prepareStatement("UPDATE usuarios\n"
+                    + "SET nombre=?,apellidos=?,num_celular=?,fecha_nacimiento=?,genero=?,id_ciudad=?,password=?,foto_perfil=?\n"
+                    + "WHERE num_documento=?;");
+
+            stat.setString(1, usuario.getNombre());
+            stat.setString(2, usuario.getApellidos());
+            stat.setString(3, usuario.getNumeroCelular());
+            stat.setDate(4, new Date(usuario.getFechaNacimiento().getTime()));
+            stat.setString(5, usuario.getGenero());
+            stat.setInt(6, usuario.getIdCiudad());
+            stat.setString(7, usuario.getPassword());
+            stat.setString(8, usuario.getFotoPerfil());
+            stat.setString(9, usuario.getNumDocumento());
+            int filasAfectadas = stat.executeUpdate();
+            return filasAfectadas > 0;
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean deleteUsuario(String documentoUsuario) {
+        try {
+            conexion = new Conexion();
+            PreparedStatement stat = conexion.getConec().prepareStatement("DELETE FROM usuarios WHERE num_documento=?");
+            stat.setString(1, documentoUsuario);
+            int filasAfectadas = stat.executeUpdate();
+            return filasAfectadas > 0;
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
 }
-    
