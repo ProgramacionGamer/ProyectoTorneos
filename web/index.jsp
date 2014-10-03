@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 1/10/2014, 10:06:49 AM
-    Author     : Sammy Guergachi <sguergachi at gmail.com>
+    Author     : Fabian Castro <fabicastro89 at gmail.com>
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

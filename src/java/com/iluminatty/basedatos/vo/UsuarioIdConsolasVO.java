@@ -8,13 +8,14 @@ package com.iluminatty.basedatos.vo;
 
 /**
  * 
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author Fabian Castro <fabicastro89 at gmail.com>
  */
-public class UsuariosIdConsolasVO {
+public class UsuarioIdConsolasVO {
     private int id;
     private int idPlataforma;
     private String documentoUsuario;
     private String nombreUsuarioPlat;
+    private String logo;
 
     public int getId() {
         return id;
@@ -46,5 +47,13 @@ public class UsuariosIdConsolasVO {
 
     public void setNombreUsuarioPlat(String nombreUsuarioPlat) {
         this.nombreUsuarioPlat = nombreUsuarioPlat;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 }

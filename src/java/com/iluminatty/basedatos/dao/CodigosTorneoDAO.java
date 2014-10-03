@@ -3,41 +3,54 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.iluminatty.basedatos.dao;
 
 import com.iluminatty.basedatos.vo.*;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
- * 
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ *
+ * @author Fabian Castro <fabicastro89 at gmail.com>
  */
 public class CodigosTorneoDAO {
-    private int idCodigo;
-    private int idTorneo;
-    private String codigo;
 
-    public int getIdCodigo() {
-        return idCodigo;
+    Conexion conexion;
+
+    public boolean guardarCodigosTorneo(ArrayList<String> arr, int idTorneo) {
+        try {
+            conexion = new Conexion();
+            String sql = "INSERT INTO codigos_torneo(id_torneo,codigo) VALUES ";
+            StringBuilder build = new StringBuilder(sql);
+
+            for (int j = 0; j < arr.size(); j++) {
+                build.append("(?,?)");
+                if (j + 1 != arr.size()) {
+                    build.append(",");
+                }
+            }
+            PreparedStatement stat = conexion.getConec().prepareStatement(build.toString());
+            int param = 0;
+            for (int j = 0; j < arr.size(); j++) {
+                stat.setInt(++param,idTorneo);
+                stat.setString(++param,arr.get(j));
+            }
+
+            int filasAfectadas = stat.executeUpdate();
+            return filasAfectadas > 0;
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        } finally {
+            try {
+                conexion.getConec().close();
+            } catch (SQLException ex) {
+
+            }
+        }
     }
 
-    public void setIdCodigo(int idCodigo) {
-        this.idCodigo = idCodigo;
-    }
-
-    public int getIdTorneo() {
-        return idTorneo;
-    }
-
-    public void setIdTorneo(int idTorneo) {
-        this.idTorneo = idTorneo;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
 }

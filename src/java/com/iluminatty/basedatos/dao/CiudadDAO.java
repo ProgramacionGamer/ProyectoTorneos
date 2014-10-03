@@ -3,26 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.iluminatty.basedatos.dao;
 
 import com.iluminatty.basedatos.vo.*;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
- * 
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ *
+ * @author Fabian Castro <fabicastro89 at gmail.com>
  */
 public class CiudadDAO {
-    
-    int idCiudad;
-    private String nombre;
-    int idPais;
 
-    public String getNombre() {
-        return nombre;
+    Conexion conexion;
+
+    public ArrayList<CiudadVO> consultarCiudades() {
+        ArrayList<CiudadVO> usuarios = new ArrayList<>();
+        try {
+            conexion = new Conexion();
+            ResultSet resultado = conexion.getConec().prepareStatement("SELECT * FROM ciudad").executeQuery();
+            while (resultado.next()) {
+                CiudadVO ciudad = new CiudadVO();
+                ciudad.setIdCiudad(resultado.getInt("id_ciudad"));
+                ciudad.setNombre(resultado.getString("nombre_ciudad"));
+                usuarios.add(ciudad);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return usuarios;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 }

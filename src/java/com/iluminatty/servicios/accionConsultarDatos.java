@@ -6,8 +6,13 @@
 package com.iluminatty.servicios;
 
 import com.google.gson.Gson;
-import com.iluminatty.basedatos.dao.PlataformasDAO;
-import com.iluminatty.basedatos.dao.UsuarioConsolasPlanoDAO;
+import com.iluminatty.basedatos.dao.CiudadDAO;
+import com.iluminatty.basedatos.dao.PerfilUsuarioDAO;
+import com.iluminatty.basedatos.dao.TipoDocumentosDAO;
+import com.iluminatty.basedatos.dao.UsuarioDAO;
+import com.iluminatty.basedatos.vo.PerfilUsuarioVO;
+import com.iluminatty.utilidades.Constantes;
+import com.iluminatty.utilidades.Mensajes;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -18,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author Fabian Castro <fabicastro89 at gmail.com>
  */
 public class accionConsultarDatos extends HttpServlet {
 
@@ -35,24 +40,27 @@ public class accionConsultarDatos extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            UsuarioConsolasPlanoDAO dao = new UsuarioConsolasPlanoDAO();
-            ArrayList arr = dao.consultarPlataformasUsuario("14785236900");
-            
-            
-            Gson gson = new Gson();
-            String str = gson.toJson(arr);
-            
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet accionConsultarDatos</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet accionConsultarDatos at " + request.getContextPath() + "</h1>");
-            out.println("<p>" + str + "</p>");
-            out.println("</body>");
-            out.println("</html>");
+            String accion = request.getParameter("opcion");
+            //out.println(consultarCiudades());
+            switch (accion) {
+                case "ciudades":
+                    out.println(consultarCiudades());
+                    break;
+                case "tiposDoc":
+                    out.println(consultarTiposDocumento());
+                    break;
+                case "verificarLogin":
+                    String correo = request.getParameter("usuario");
+                    String password = request.getParameter("pass");
+                    out.println(verificarUsaurio(request,correo,password));
+                    break;
+                case "datosPerfilUsuario":
+                    String docUsu = (String)request.getSession().getAttribute("docUsu");
+                    out.println(consultarPerfilUsuario(docUsu));
+                    break;
+                default:
+                    out.print("ERROR");
+            }
         }
     }
 
@@ -94,5 +102,48 @@ public class accionConsultarDatos extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private String consultarCiudades() {
+        CiudadDAO dao = new CiudadDAO();
+        ArrayList arr = dao.consultarCiudades();
+
+        Gson gson = new Gson();
+        return gson.toJson(arr);
+    }
+
+    private String consultarTiposDocumento() {
+        TipoDocumentosDAO dao = new TipoDocumentosDAO();
+        ArrayList arr = dao.consultarTiposDocumento();
+
+        Gson gson = new Gson();
+        return gson.toJson(arr);
+    }
+
+    private String verificarUsaurio(HttpServletRequest request,String correo,String pass) {
+        UsuarioDAO dao = new UsuarioDAO();
+        Mensajes mensaje = new Mensajes();
+        String docUsu= dao.validarUsuarioPass(correo, pass);
+        if (!docUsu.equalsIgnoreCase("NN")){
+            mensaje.setCodigo(Constantes.CODIGO_OK);
+            request.getSession().setAttribute("docUsu", docUsu);
+            if(dao.consultarAdmins(docUsu)){
+                mensaje.setMensaje("adm");
+                request.getSession().setAttribute("tipoUsu", "adm");
+            }else{
+                mensaje.setMensaje("usr");
+                request.getSession().setAttribute("tipoUsu", "usr");
+            }
+        }
+        Gson gson = new Gson();
+        return gson.toJson(mensaje);
+    }
+
+    private String consultarPerfilUsuario(String docUsu) {
+        PerfilUsuarioDAO dao = new PerfilUsuarioDAO();
+        PerfilUsuarioVO arr = dao.consultarPerfilUsaurio(docUsu);
+
+        Gson gson = new Gson();
+        return gson.toJson(arr);
+    }
 
 }

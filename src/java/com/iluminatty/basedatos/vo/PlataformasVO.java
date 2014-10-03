@@ -8,11 +8,12 @@ package com.iluminatty.basedatos.vo;
 
 /**
  * 
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author Fabian Castro <fabicastro89 at gmail.com>
  */
 public class PlataformasVO {
     private int idPlataforma;
     private String nombre;
+    private String logo;
 
     public int getIdPlataforma() {
         return idPlataforma;
@@ -28,5 +29,13 @@ public class PlataformasVO {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 }

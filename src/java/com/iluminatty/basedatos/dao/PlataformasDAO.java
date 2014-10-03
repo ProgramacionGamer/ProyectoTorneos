@@ -8,6 +8,7 @@ package com.iluminatty.basedatos.dao;
 import com.iluminatty.basedatos.vo.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -31,6 +32,12 @@ public class PlataformasDAO {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
+        }finally{
+            try {
+                conexion.getConec().close();
+            } catch (SQLException ex) {
+               
+            }
         }
         return plataformas;
     }
@@ -44,6 +51,12 @@ public class PlataformasDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
             return false;
+        }finally{
+            try {
+                conexion.getConec().close();
+            } catch (SQLException ex) {
+               
+            }
         }
     }    
 }

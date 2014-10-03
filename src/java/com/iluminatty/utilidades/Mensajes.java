@@ -4,32 +4,15 @@
  * and open the template in the editor.
  */
 
-package com.iluminatty.basedatos.vo;
+package com.iluminatty.utilidades;
 
 /**
  * 
  * @author Fabian Castro <fabicastro89 at gmail.com>
  */
-public class CodigosTorneoVO {
-    private int idCodigo;
-    private int idTorneo;
+public class Mensajes {
     private String codigo;
-
-    public int getIdCodigo() {
-        return idCodigo;
-    }
-
-    public void setIdCodigo(int idCodigo) {
-        this.idCodigo = idCodigo;
-    }
-
-    public int getIdTorneo() {
-        return idTorneo;
-    }
-
-    public void setIdTorneo(int idTorneo) {
-        this.idTorneo = idTorneo;
-    }
+    private String Mensaje;
 
     public String getCodigo() {
         return codigo;
@@ -37,5 +20,13 @@ public class CodigosTorneoVO {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+
+    public String getMensaje() {
+        return Mensaje;
+    }
+
+    public void setMensaje(String Mensaje) {
+        this.Mensaje = Mensaje;
     }
 }

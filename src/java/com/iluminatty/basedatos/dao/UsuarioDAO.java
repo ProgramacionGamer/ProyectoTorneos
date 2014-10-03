@@ -9,6 +9,7 @@ import com.iluminatty.basedatos.vo.*;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -41,19 +42,24 @@ public class UsuarioDAO {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
+        }finally{
+            try {
+                conexion.getConec().close();
+            } catch (SQLException ex) {
+               
+            }
         }
         return usuarios;
     }
 
-    public ArrayList<UsuarioVO> consultarUsuPorCorreo(String correo) {
-        ArrayList<UsuarioVO> usuarios = new ArrayList<>();
+    public UsuarioVO consultarUsuario(String docUsu) {
         try {
             conexion = new Conexion();
-            PreparedStatement prepStat = conexion.getConec().prepareStatement("SELECT * FROM usuarios where correo = ?");
-            prepStat.setString(1, correo);
+            PreparedStatement prepStat = conexion.getConec().prepareStatement("SELECT * FROM usuarios where num_documento = ?");
+            prepStat.setString(1, docUsu);
             ResultSet resultado = prepStat.executeQuery();
+            UsuarioVO usuario = new UsuarioVO();
             while (resultado.next()) {
-                UsuarioVO usuario = new UsuarioVO();
                 usuario.setNumDocumento(resultado.getString("num_documento"));
                 usuario.setTipoDocumento(resultado.getInt("tipo_documento"));
                 usuario.setNombre(resultado.getString("nombre"));
@@ -65,16 +71,47 @@ public class UsuarioDAO {
                 usuario.setCorreo(resultado.getString("correo"));
                 usuario.setPassword(resultado.getString("password"));
                 usuario.setFotoPerfil(resultado.getString("foto_perfil"));
-                usuarios.add(usuario);
+                
             }
+            return usuario;
 
         } catch (Exception ex) {
             ex.printStackTrace();
+        }finally{
+            try {
+                conexion.getConec().close();
+            } catch (SQLException ex) {
+               
+            }
         }
-        return usuarios;
+        return null;
     }
 
-    public boolean validarUsuarioPass(String correo, String pass) {
+    public boolean consultarAdmins(String docUsu) {
+        ArrayList<UsuarioVO> usuarios = new ArrayList<>();
+        try {
+            conexion = new Conexion();
+            PreparedStatement prepStat = conexion.getConec().prepareStatement("SELECT * FROM admins where doc_usu = ?");
+            prepStat.setString(1, docUsu);
+            ResultSet resultado = prepStat.executeQuery();
+            while (resultado.next()) {
+                return true;
+            }
+            return false;
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }finally{
+            try {
+                conexion.getConec().close();
+            } catch (SQLException ex) {
+               
+            }
+        }
+    }
+    
+    public String validarUsuarioPass(String correo, String pass) {
         ArrayList<UsuarioVO> usuarios = new ArrayList<>();
         try {
             conexion = new Conexion();
@@ -83,12 +120,18 @@ public class UsuarioDAO {
             prepStat.setString(2, pass);
             ResultSet resultado = prepStat.executeQuery();
             while (resultado.next()) {
-                return true;
+                return resultado.getString("num_documento");
             }
-            return false;
+            return "NN";
         } catch (Exception ex) {
             ex.printStackTrace();
-            return false;
+            return "NN";
+        }finally{
+            try {
+                conexion.getConec().close();
+            } catch (SQLException ex) {
+               
+            }
         }
     }
 
@@ -113,6 +156,12 @@ public class UsuarioDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
             return false;
+        }finally{
+            try {
+                conexion.getConec().close();
+            } catch (SQLException ex) {
+               
+            }
         }
     }
 
@@ -138,6 +187,12 @@ public class UsuarioDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
             return false;
+        }finally{
+            try {
+                conexion.getConec().close();
+            } catch (SQLException ex) {
+               
+            }
         }
     }
 
@@ -152,6 +207,12 @@ public class UsuarioDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
             return false;
+        }finally{
+            try {
+                conexion.getConec().close();
+            } catch (SQLException ex) {
+               
+            }
         }
     }
 

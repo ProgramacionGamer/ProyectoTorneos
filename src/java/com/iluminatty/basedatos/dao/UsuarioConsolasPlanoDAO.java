@@ -5,21 +5,22 @@
  */
 package com.iluminatty.basedatos.dao;
 
-import com.iluminatty.basedatos.vo.UsaurioConsolasPlanoVO;
+import com.iluminatty.basedatos.vo.UsuarioConsolasPlanoVO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
  *
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author Fabian Castro <fabicastro89 at gmail.com>
  */
 public class UsuarioConsolasPlanoDAO {
 
     Conexion conexion;
 
-    public ArrayList<UsaurioConsolasPlanoVO> consultarPlataformasUsuario(String documento) {
-        ArrayList<UsaurioConsolasPlanoVO> plataformas = new ArrayList<>();
+    public ArrayList<UsuarioConsolasPlanoVO> consultarPlataformasUsuario(String documento) {
+        ArrayList<UsuarioConsolasPlanoVO> plataformas = new ArrayList<>();
         try {
             conexion = new Conexion();
             PreparedStatement stat = conexion.getConec().prepareStatement("SELECT plataformas.nombre, usuariosidconsolas.nom_usu_plataforma\n"
@@ -28,13 +29,19 @@ public class UsuarioConsolasPlanoDAO {
             stat.setString(1, documento);
             ResultSet resultado = stat.executeQuery();
             while (resultado.next()) {
-                UsaurioConsolasPlanoVO usuPlano = new UsaurioConsolasPlanoVO();
+                UsuarioConsolasPlanoVO usuPlano = new UsuarioConsolasPlanoVO();
                 usuPlano.setNombrePlataforma(resultado.getString("nombre"));
                 usuPlano.setIdUsuarioPlataforma(resultado.getString("nom_usu_plataforma"));
                 plataformas.add(usuPlano);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
+        }finally{
+            try {
+                conexion.getConec().close();
+            } catch (SQLException ex) {
+               
+            }
         }
         return plataformas;
     }

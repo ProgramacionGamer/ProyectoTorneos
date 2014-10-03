@@ -10,25 +10,8 @@ import com.iluminatty.basedatos.vo.*;
 
 /**
  * 
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author Fabian Castro <fabicastro89 at gmail.com>
  */
 public class ParticipantesTorneoDAO {
-    private String docUsuario;
-    private int idCodigoTorneo;
-
-    public int getIdCodigoTorneo() {
-        return idCodigoTorneo;
-    }
-
-    public void setIdCodigoTorneo(int idCodigoTorneo) {
-        this.idCodigoTorneo = idCodigoTorneo;
-    }
-
-    public String getDocUsuario() {
-        return docUsuario;
-    }
-
-    public void setDocUsuario(String docUsuario) {
-        this.docUsuario = docUsuario;
-    }
+    
 }

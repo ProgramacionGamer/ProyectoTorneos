@@ -10,7 +10,7 @@ package com.iluminatty.basedatos.vo;
  * 
  * @author Fabian Castro <fabicastro89 at gmail.com>
  */
-public class UsaurioConsolasPlanoVO {
+public class UsuarioConsolasPlanoVO {
     private String nombrePlataforma;
     private String idUsuarioPlataforma;
 

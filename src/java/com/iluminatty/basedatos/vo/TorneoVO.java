@@ -6,12 +6,15 @@
 
 package com.iluminatty.basedatos.vo;
 
+import java.util.Date;
+
 /**
  * 
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author Fabian Castro <fabicastro89 at gmail.com>
  */
 public class TorneoVO {
     private int id;
+    private Date fechaInicio;
     private String nombre;
     private String prefijo;
     private int numeroJugadores;
@@ -100,5 +103,13 @@ public class TorneoVO {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
 }

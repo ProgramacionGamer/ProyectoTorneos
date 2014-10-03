@@ -8,7 +8,7 @@ package com.iluminatty.basedatos.vo;
 
 /**
  * 
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author Fabian Castro <fabicastro89 at gmail.com>
  */
 public class TipoDocumentosVO {
     private int id;

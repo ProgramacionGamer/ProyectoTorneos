@@ -7,11 +7,12 @@ package com.iluminatty.basedatos.dao;
 
 import com.iluminatty.basedatos.vo.*;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
  *
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author Fabian Castro <fabicastro89 at gmail.com>
  */
 public class TipoDocumentosDAO {
 
@@ -30,6 +31,12 @@ public class TipoDocumentosDAO {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
+        }finally{
+            try {
+                conexion.getConec().close();
+            } catch (SQLException ex) {
+               
+            }
         }
         return tiposDocumentos;
     }

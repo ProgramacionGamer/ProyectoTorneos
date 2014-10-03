@@ -12,6 +12,6 @@ import com.iluminatty.basedatos.vo.*;
  * 
  * @author Fabian Castro <fabicastro89 at gmail.com>
  */
-public class PaisDAO {
-    
+public class JuegoDAO {
+   
 }

@@ -4,14 +4,15 @@
  * and open the template in the editor.
  */
 
-package com.iluminatty.basedatos.dao;
-
-import com.iluminatty.basedatos.vo.*;
+package com.iluminatty.utilidades;
 
 /**
  * 
  * @author Fabian Castro <fabicastro89 at gmail.com>
  */
-public class PaisDAO {
+public class Constantes {
+    public static final String CODIGO_OK = "OK";
+    public static final String CODIGO_ERROR = "ERROR";
+    
     
 }
